@@ -139,7 +139,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-purple-400">
+            <p className="text-sm text-gray-400">
                 © {currentYear}{' '}
                 <a
                   href="https://kitdevelop.com"
@@ -161,7 +161,9 @@ export default function Footer() {
               <a href="#" className="hover:text-primary-400 transition-colors">
                 Cookies
               </a>
-              |
+
+            |
+
               <p className="text-slate-600 dark:text-slate-400 text-sm flex items-center gap-2">
               Made with code and <Heart className="w-4 h-4 text-purple-500 fill-current" /> in LiFi Valley
             </p>
