@@ -131,7 +131,7 @@ export default function ContactForm() {
                 </button>
 
                 <p className="text-sm text-gray-500 text-center">
-                  By submitting this form, you agree to our terms of service and privacy policy
+                  By submitting this form, you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>
                 </p>
               </form>
             ) : (

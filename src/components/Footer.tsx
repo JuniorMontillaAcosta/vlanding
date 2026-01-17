@@ -1,4 +1,4 @@
-import { Eye, Mail, Phone, MapPin, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Heart, Eye, Mail, Phone, MapPin, Twitter, Linkedin, Facebook } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -129,7 +129,9 @@ export default function Footer() {
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>Santo Domingo, Dominican Republic</span>
+                <span>Av. Hugo Chavez
+                      F, 5, 14
+                      LiFi Valley, DO 11906</span>
               </li>
             </ul>
           </div>
@@ -137,7 +139,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-purple-400">
                 © {currentYear}{' '}
                 <a
                   href="https://kitdevelop.com"
@@ -160,6 +162,9 @@ export default function Footer() {
                 Cookies
               </a>
             </div>
+            <p className="text-slate-600 dark:text-slate-400 text-sm flex items-center gap-2">
+              Made with code and <Heart className="w-4 h-4 text-purple-500 fill-current" /> in LiFi Valley
+            </p>
           </div>
         </div>
       </div>

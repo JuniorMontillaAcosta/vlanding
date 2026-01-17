@@ -39,7 +39,7 @@ export default function Benefits() {
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600">
-            Empower your hiring process with cutting-edge AI technology that
+              Empower your hiring process with cutting-edge AI technology what help to know the truth.
           </p>
         </div>
 
