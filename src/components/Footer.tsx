@@ -161,7 +161,7 @@ export default function Footer() {
               <a href="#" className="hover:text-primary-400 transition-colors">
                 Cookies
               </a>
-
+              |
               <p className="text-slate-600 dark:text-slate-400 text-sm flex items-center gap-2">
               Made with code and <Heart className="w-4 h-4 text-purple-500 fill-current" /> in LiFi Valley
             </p>
