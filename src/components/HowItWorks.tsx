@@ -80,12 +80,13 @@ export default function HowItWorks() {
             Seamless Integration with Your Tools
           </h3>
           <p className="text-white/90 text-lg mb-6">
-            Compatible with Zoom, Google Meet, Microsoft Teams, and more
+            Compatible with Zoom, Google Meet, Microsoft Teams, Linkedin, and more.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm font-semibold">
             <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">Zoom</span>
             <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">Google Meet</span>
             <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">Microsoft Teams</span>
+            <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">Linkedin</span>
             <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">API REST</span>
           </div>
         </div>
