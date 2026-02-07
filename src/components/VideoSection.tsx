@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Play, X } from 'lucide-react';
+import '@justinribeiro/lite-youtube';
 
 // Add TypeScript declaration for the custom element
 declare global {
@@ -49,8 +50,11 @@ export default function VideoSection() {
               <X className="w-6 h-6" />
             </button>
 
-            <div className="relative pt-[56.25%]">
-              {/* <lite-youtube videoid="sU-xYo6-edU" className="absolute inset-0 w-full h-full"/> */}
+            <div className="relative w-full aspect-video">
+              <lite-youtube 
+                videoid="sU-xYo6-edU" 
+                className="absolute inset-0 w-full h-full"
+              />
             </div>
           </div>
         </div>
