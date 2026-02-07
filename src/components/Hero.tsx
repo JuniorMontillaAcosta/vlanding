@@ -28,7 +28,7 @@ export default function Hero() {
               Hidden Truth
             </span>
             <br />
-            in Every Interview inside a Gesell room
+            in Every Interview inside a <span className="text-primary-600">Gesell room</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in-up delay-200">
