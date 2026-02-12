@@ -1,20 +1,73 @@
-import { Heart, Eye, Mail, Phone, MapPin, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, ArrowUp, Sun, Moon } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved === 'true';
+  });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('darkMode', 'true');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('darkMode', 'false');
+    }
+  }, [isDarkMode]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <>
+      {/* Dark Mode Button */}
+      <button
+        onClick={toggleDarkMode}
+        className="fixed bottom-24 right-6 bg-primary-600 hover:bg-primary-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 hover:scale-110"
+        aria-label="Toggle dark mode"
+      >
+        {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+      </button>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-primary-600 hover:bg-primary-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 hover:scale-110 animate-bounce"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="w-6 h-6" />
+        </button>
+      )}
+
+      <footer className="bg-gray-900 dark:bg-gray-950 text-gray-300 transition-colors duration-300">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="bg-gradient-to-br from-primary-600 to-primary-700 p-2 rounded-lg">
-                <Eye className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent">
-                VeraciousVision
-              </span>
+              <img 
+                src="/VeraciousVision-web-version.png" 
+                alt="VeraciousVision Logo" 
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-4">
                 Computer vision and AI technology to detect truthfulness in job interviews.
@@ -170,5 +223,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

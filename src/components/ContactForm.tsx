@@ -37,12 +37,12 @@ export default function ContactForm() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-2xl p-8 sm:p-12">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 sm:p-12 transition-colors duration-300">
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Name *
                     </label>
                     <input
@@ -52,13 +52,13 @@ export default function ContactForm() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
                       placeholder="Juan Pérez"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Corporate Email *
                     </label>
                     <input
@@ -68,7 +68,7 @@ export default function ContactForm() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
                       placeholder="juan@empresa.com"
                     />
                   </div>
@@ -76,7 +76,7 @@ export default function ContactForm() {
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="company" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Company *
                     </label>
                     <input
@@ -86,13 +86,13 @@ export default function ContactForm() {
                       required
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
                       placeholder="Your Company Inc."
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Phone Number
                     </label>
                     <input
@@ -101,14 +101,14 @@ export default function ContactForm() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
                       placeholder="+34 600 000 000"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     Message
                   </label>
                   <textarea
@@ -117,7 +117,7 @@ export default function ContactForm() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none resize-none"
                     placeholder="Tell us about your hiring needs..."
                   ></textarea>
                 </div>
@@ -130,19 +130,19 @@ export default function ContactForm() {
                   <Send className="w-5 h-5" />
                 </button>
 
-                <p className="text-sm text-gray-500 text-center">
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
                   By submitting this form, you agree to our <a className="hover:text-primary-400" href="#">terms of service</a> and <a className="hover:text-primary-400" href="#">privacy policy</a>
                 </p>
               </form>
             ) : (
               <div className="text-center py-12">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 rounded-full mb-6">
-                  <CheckCircle className="w-10 h-10 text-primary-600" />
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 dark:bg-primary-900 rounded-full mb-6">
+                  <CheckCircle className="w-10 h-10 text-primary-600 dark:text-primary-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   Request Sent!
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   Our team will contact you within the next 24 hours
                 </p>
               </div>

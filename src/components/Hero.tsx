@@ -10,28 +10,28 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-primary-50 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 -z-10"></div>
 
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary-300/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl -z-10 animate-pulse delay-1000"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-600 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
+          <div className="inline-flex items-center space-x-2 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
             <Sparkles className="w-4 h-4" />
             <span>Advanced Computer Vision Technology</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight animate-fade-in-up">
             Discover the{' '}
-            <span className="text-primary-600">
+            <span className="text-primary-600 dark:text-primary-400">
               Hidden Truth
             </span>
             <br />
-            in Every Interview inside a <span className="text-primary-600">Gesell room</span>
+            in Every Interview inside a <span className="text-primary-600 dark:text-primary-400">Gesell room</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in-up delay-200">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in-up delay-200">
             VeraciousVision uses artificial intelligence and facial micro-expression analysis to help you make more informed and accurate hiring decisions.
           </p>
 

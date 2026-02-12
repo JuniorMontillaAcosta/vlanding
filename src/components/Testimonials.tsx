@@ -29,16 +29,16 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-16 lg:py-24 bg-white">
+    <section id="testimonials" className="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             What They Say About{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">
               Our Clients
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
             Leading companies trust VeraciousVision to optimize their hiring processes
           </p>
         </div>
@@ -63,12 +63,12 @@ export default function Testimonials() {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-primary-200"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-primary-200 dark:border-primary-600"
                 />
                 <div>
-                  <div className="font-bold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.position}</div>
-                  <div className="flex items-center space-x-1 text-xs text-primary-600 mt-1">
+                  <div className="font-bold text-gray-900 dark:text-white">{testimonial.name}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</div>
+                  <div className="flex items-center space-x-1 text-xs text-primary-600 dark:text-primary-400 mt-1">
                     <Building2 className="w-3 h-3" />
                     <span>{testimonial.company}</span>
                   </div>
@@ -79,20 +79,20 @@ export default function Testimonials() {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center space-x-8 bg-gradient-to-r from-primary-50 to-primary-100 px-8 py-6 rounded-2xl">
+          <div className="inline-flex items-center space-x-8 bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/30 dark:to-primary-800/30 px-8 py-6 rounded-2xl">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-700">4.9/5</div>
-              <div className="text-sm text-gray-600">Average Rating</div>
+              <div className="text-3xl font-bold text-primary-700 dark:text-primary-400">4.9/5</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Average Rating</div>
             </div>
-            <div className="h-12 w-px bg-primary-300"></div>
+            <div className="h-12 w-px bg-primary-300 dark:bg-primary-600"></div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-700">10+</div>
-              <div className="text-sm text-gray-600">Satisfied Clients</div>
+              <div className="text-3xl font-bold text-primary-700 dark:text-primary-400">10+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Satisfied Clients</div>
             </div>
-            <div className="h-12 w-px bg-primary-300"></div>
+            <div className="h-12 w-px bg-primary-300 dark:bg-primary-600"></div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-700">98%</div>
-              <div className="text-sm text-gray-600">Would Recommend</div>
+              <div className="text-3xl font-bold text-primary-700 dark:text-primary-400">98%</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Would Recommend</div>
             </div>
           </div>
         </div>

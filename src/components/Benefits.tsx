@@ -29,16 +29,16 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="py-16 lg:py-24 bg-white">
+    <section id="benefits" className="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             ¿Why Choose{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">
               VeraciousVision?
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
               Empower your hiring process with cutting-edge AI technology what help to know the truth.
           </p>
         </div>
@@ -47,19 +47,19 @@ export default function Benefits() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="group relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-200 hover:border-primary-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-700 dark:to-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-600 hover:border-primary-300 dark:hover:border-primary-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-transparent rounded-bl-full opacity-50"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 dark:from-primary-900 to-transparent rounded-bl-full opacity-50"></div>
 
               <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${benefit.gradient} mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 <benefit.icon className="w-7 h-7 text-white" />
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
                 {benefit.title}
               </h3>
 
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {benefit.description}
               </p>
             </div>

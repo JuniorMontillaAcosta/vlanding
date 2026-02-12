@@ -29,16 +29,16 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="how-it-works" className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             How it Works{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-primary-400 dark:to-primary-600 bg-clip-text text-transparent">
               Our Technology
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
             A simple and effective process that seamlessly integrates with your workflow
           </p>
         </div>
@@ -53,16 +53,16 @@ export default function HowItWorks() {
                     <div className="relative bg-gradient-to-br from-primary-600 to-primary-800 w-20 h-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <step.icon className="w-10 h-10 text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 bg-white text-primary-600 font-bold text-sm w-8 h-8 rounded-full flex items-center justify-center border-2 border-primary-300">
+                    <div className="absolute -top-2 -right-2 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 font-bold text-sm w-8 h-8 rounded-full flex items-center justify-center border-2 border-primary-300 dark:border-primary-600">
                       {step.number}
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                     {step.title}
                   </h3>
 
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {step.description}
                   </p>
                 </div>

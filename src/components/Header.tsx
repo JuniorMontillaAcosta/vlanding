@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Eye } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,26 +13,30 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm transition-colors duration-300">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('hero')}>
-            <div className="bg-gradient-to-br from-primary-600 to-primary-700 p-2 rounded-lg">
-              <Eye className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-xl lg:text-2xl font-bold text-primary-600">
-              VeraciousVision
-            </span>
+            <img 
+              src="/VeraciousVision-black.png" 
+              alt="VeraciousVision Logo" 
+              className="h-14 lg:h-16 w-auto dark:hidden"
+            />
+            <img 
+              src="/VeraciousVision-web-version.png" 
+              alt="VeraciousVision Logo" 
+              className="h-14 lg:h-16 w-auto hidden dark:block"
+            />
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('benefits')} className="text-gray-700 hover:text-primary-600 transition-colors font-medium">
+            <button onClick={() => scrollToSection('benefits')} className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium">
               Benefits
             </button>
-            <button onClick={() => scrollToSection('how-it-works')} className="text-gray-700 hover:text-primary-600 transition-colors font-medium">
+            <button onClick={() => scrollToSection('how-it-works')} className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium">
               How It Works
             </button>
-            <button onClick={() => scrollToSection('testimonials')} className="text-gray-700 hover:text-primary-600 transition-colors font-medium">
+            <button onClick={() => scrollToSection('testimonials')} className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium">
               Testimonials
             </button>
             <button
@@ -45,7 +49,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-700 hover:text-primary-600 transition-colors"
+            className="md:hidden text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -53,15 +57,15 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 animate-fade-in">
+          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <button onClick={() => scrollToSection('benefits')} className="text-gray-700 hover:text-primary-600 transition-colors font-medium text-left">
+              <button onClick={() => scrollToSection('benefits')} className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-left">
                 Benefits
               </button>
-              <button onClick={() => scrollToSection('how-it-works')} className="text-gray-700 hover:text-primary-600 transition-colors font-medium text-left">
+              <button onClick={() => scrollToSection('how-it-works')} className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-left">
                 How It Works
               </button>
-              <button onClick={() => scrollToSection('testimonials')} className="text-gray-700 hover:text-primary-600 transition-colors font-medium text-left">
+              <button onClick={() => scrollToSection('testimonials')} className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-left">
                 Testimonials
               </button>
               <button
