@@ -18,12 +18,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('hero')}>
             <img 
-              src="/VeraciousVision-black.png" 
+              src="/VeraciousVision-web-version-transparente-color.png" 
               alt="VeraciousVision Logo" 
               className="h-14 lg:h-16 w-auto dark:hidden"
             />
             <img 
-              src="/VeraciousVision-web-version.png" 
+              src="/VeraciousVision-web-version-transparente.png" 
               alt="VeraciousVision Logo" 
               className="h-14 lg:h-16 w-auto hidden dark:block"
             />
