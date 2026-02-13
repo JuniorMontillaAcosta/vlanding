@@ -64,7 +64,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <img 
-                src="/VeraciousVision-web-version.png" 
+                src="/VeraciousVision-web-version-transparente.png" 
                 alt="VeraciousVision Logo" 
                 className="h-12 w-auto"
               />
