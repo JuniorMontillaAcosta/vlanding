@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, X } from 'lucide-react';
+import { Resend } from 'resend';
+
+const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -9,15 +12,33 @@ export default function ContactForm() {
     phone: '',
     message: '',
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [modal, setModal] = useState({ open: false, success: false, message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', company: '', phone: '', message: '' });
-    }, 3000);
+    try {
+      const { error } = await resend.emails.send({
+        from: 'onboarding@resend.dev',
+        to: 'j.octaviomontilla@gmail.com',
+        subject: 'Demo Request from Contact Form',
+        react: `
+          <h2>New Demo Request</h2>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Company:</strong> ${formData.company}</p>
+          <p><strong>Phone:</strong> ${formData.phone}</p>
+          <p><strong>Message:</strong> ${formData.message}</p>
+        `,
+      });
+      if (error) {
+        setModal({ open: true, success: false, message: 'Failed to send email. Please try again.' });
+      } else {
+        setModal({ open: true, success: true, message: 'Email sent successfully! Our team will contact you within 24 hours.' });
+        setFormData({ name: '', email: '', company: '', phone: '', message: '' });
+      }
+    } catch (err) {
+      setModal({ open: true, success: false, message: 'An error occurred. Please try again.' });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,8 +59,7 @@ export default function ContactForm() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 sm:p-12 transition-colors duration-300">
-            {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -134,19 +154,6 @@ export default function ContactForm() {
                   By submitting this form, you agree to our <a className="hover:text-primary-400" href="#">terms of service</a> and <a className="hover:text-primary-400" href="#">privacy policy</a>
                 </p>
               </form>
-            ) : (
-              <div className="text-center py-12">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 dark:bg-primary-900 rounded-full mb-6">
-                  <CheckCircle className="w-10 h-10 text-primary-600 dark:text-primary-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  Request Sent!
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Our team will contact you within the next 24 hours
-                </p>
-              </div>
-            )}
           </div>
 
           <div className="grid sm:grid-cols-3 gap-6 mt-12 text-center text-white">
@@ -165,6 +172,34 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
+
+      {modal.open && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full mx-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                {modal.success ? 'Success' : 'Error'}
+              </h3>
+              <button
+                onClick={() => setModal({ open: false, success: false, message: '' })}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex items-center mb-4">
+              <CheckCircle className={`w-8 h-8 ${modal.success ? 'text-green-500' : 'text-red-500'} mr-3`} />
+              <p className="text-gray-700 dark:text-gray-300">{modal.message}</p>
+            </div>
+            <button
+              onClick={() => setModal({ open: false, success: false, message: '' })}
+              className="w-full bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
