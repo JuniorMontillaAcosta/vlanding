@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import { Send, CheckCircle, X } from 'lucide-react';
-import { Resend } from 'resend';
-
-const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -17,24 +14,32 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { error } = await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: 'j.octaviomontilla@gmail.com',
-        subject: 'Demo Request from Contact Form',
-        react: `
-          <h2>New Demo Request</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Company:</strong> ${formData.company}</p>
-          <p><strong>Phone:</strong> ${formData.phone}</p>
-          <p><strong>Message:</strong> ${formData.message}</p>
-        `,
+      const response = await fetch('/api/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'info@mail.veraciousvision.cv',
+          to: 'jomadevsoft@gmail.com',
+          subject: 'Demo Request from Contact Form VerciousVision.cv',
+          html: `
+            <h2>New Demo Request</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Company:</strong> ${formData.company}</p>
+            <p><strong>Phone:</strong> ${formData.phone}</p>
+            <p><strong>Message:</strong> ${formData.message}</p>
+          `,
+        }),
       });
-      if (error) {
-        setModal({ open: true, success: false, message: 'Failed to send email. Please try again.' });
-      } else {
+
+      if (response.ok) {
         setModal({ open: true, success: true, message: 'Email sent successfully! Our team will contact you within 24 hours.' });
         setFormData({ name: '', email: '', company: '', phone: '', message: '' });
+      } else {
+        setModal({ open: true, success: false, message: 'Failed to send email. Please try again.' });
       }
     } catch (err) {
       setModal({ open: true, success: false, message: 'An error occurred. Please try again.' });
