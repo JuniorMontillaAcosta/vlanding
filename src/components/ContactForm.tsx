@@ -17,21 +17,14 @@ export default function ContactForm() {
       const response = await fetch('/api/emails', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'info@mail.veraciousvision.cv',
-          to: 'jomadevsoft@gmail.com',
-          subject: 'Demo Request from Contact Form VerciousVision.cv',
-          html: `
-            <h2>New Demo Request</h2>
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Company:</strong> ${formData.company}</p>
-            <p><strong>Phone:</strong> ${formData.phone}</p>
-            <p><strong>Message:</strong> ${formData.message}</p>
-          `,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          message: formData.message,
         }),
       });
 
