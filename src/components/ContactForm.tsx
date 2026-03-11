@@ -1,5 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Send, CheckCircle, X } from 'lucide-react';
+
+declare global {
+  interface Window {
+    turnstile: any;
+  }
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -10,9 +16,53 @@ export default function ContactForm() {
     message: '',
   });
   const [modal, setModal] = useState({ open: false, success: false, message: '' });
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+
+  useEffect(() => {
+    // Render Turnstile widget when the script is loaded
+    const renderTurnstile = () => {
+      if (window.turnstile && turnstileRef.current && !widgetId.current) {
+        widgetId.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY,
+          callback: (token: string) => {
+            setTurnstileToken(token);
+          },
+          'error-callback': () => {
+            setTurnstileToken('');
+          },
+          'expired-callback': () => {
+            setTurnstileToken('');
+          },
+        });
+      }
+    };
+
+    // Check if Turnstile is already loaded
+    if (window.turnstile) {
+      renderTurnstile();
+    } else {
+      // Wait for Turnstile to load
+      const checkTurnstile = setInterval(() => {
+        if (window.turnstile) {
+          renderTurnstile();
+          clearInterval(checkTurnstile);
+        }
+      }, 100);
+
+      return () => clearInterval(checkTurnstile);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setModal({ open: true, success: false, message: 'Please complete the security verification.' });
+      return;
+    }
+
     try {
       const response = await fetch('/api/emails', {
         method: 'POST',
@@ -25,12 +75,18 @@ export default function ContactForm() {
           company: formData.company,
           phone: formData.phone,
           message: formData.message,
+          turnstileToken: turnstileToken,
         }),
       });
 
       if (response.ok) {
         setModal({ open: true, success: true, message: 'Email sent successfully! Our team will contact you within 24 hours.' });
         setFormData({ name: '', email: '', company: '', phone: '', message: '' });
+        setTurnstileToken('');
+        // Reset Turnstile widget
+        if (window.turnstile && widgetId.current) {
+          window.turnstile.reset(widgetId.current);
+        }
       } else {
         setModal({ open: true, success: false, message: 'Failed to send email. Please try again.' });
       }
@@ -138,6 +194,11 @@ export default function ContactForm() {
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none resize-none"
                     placeholder="Tell us about your hiring needs..."
                   ></textarea>
+                </div>
+
+                {/* Cloudflare Turnstile Widget */}
+                <div className="flex justify-center">
+                  <div ref={turnstileRef}></div>
                 </div>
 
                 <button

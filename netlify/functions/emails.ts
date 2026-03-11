@@ -9,6 +9,29 @@ interface EmailBody {
   company: string;
   phone: string;
   message: string;
+  turnstileToken: string;
+}
+
+// Función para verificar el token de Turnstile
+async function verifyTurnstileToken(token: string): Promise<boolean> {
+  try {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: token,
+      }),
+    });
+
+    const data = await response.json();
+    return data.success === true;
+  } catch (error) {
+    console.error('Error verifying Turnstile token:', error);
+    return false;
+  }
 }
 
 const handler: Handler = async (event) => {
@@ -28,6 +51,22 @@ const handler: Handler = async (event) => {
       return {
         statusCode: 400,
         body: JSON.stringify({ error: 'Missing required fields' }),
+      };
+    }
+
+    // Verificar token de Turnstile
+    if (!body.turnstileToken) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Missing security verification token' }),
+      };
+    }
+
+    const isValidToken = await verifyTurnstileToken(body.turnstileToken);
+    if (!isValidToken) {
+      return {
+        statusCode: 403,
+        body: JSON.stringify({ error: 'Security verification failed. Please try again.' }),
       };
     }
 

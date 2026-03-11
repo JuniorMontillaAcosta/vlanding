@@ -54,6 +54,27 @@ src/
 npm install
 ```
 
+3. Configura las variables de entorno:
+
+Copia el archivo `.env.example` a `.env`:
+```bash
+cp .env.example .env
+```
+
+Edita `.env` y completa las siguientes variables:
+
+- **VITE_RESEND_API_KEY**: Tu clave API de Resend para envío de emails
+  - Obtén tu clave en: https://resend.com/
+  
+- **VITE_TURNSTILE_SITE_KEY**: Tu Site Key de Cloudflare Turnstile (clave pública)
+  - Obtén tus claves en: https://dash.cloudflare.com/
+  - Sección: Turnstile
+  
+- **TURNSTILE_SECRET_KEY**: Tu Secret Key de Cloudflare Turnstile (clave privada)
+  - Esta clave se usa en el backend para validar el token
+
+**Nota**: Las variables que empiezan con `VITE_` son expuestas al frontend. No incluyas información sensible en ellas.
+
 ## Ejecución
 
 ### Modo Desarrollo
@@ -125,6 +146,17 @@ Los meta tags están configurados en `index.html`:
 - Labels apropiados en formularios
 - Atributos ARIA donde es necesario
 - Contraste de colores adecuado
+
+## Seguridad
+
+El formulario de contacto está protegido con **Cloudflare Turnstile**, una alternativa moderna y más privada a reCAPTCHA:
+
+- Protección contra bots y spam
+- Verificación de seguridad sin fricción
+- Respeta la privacidad del usuario
+- Validación tanto en frontend como backend
+
+El token de Turnstile se verifica en el backend (Netlify Function) antes de enviar cualquier email, asegurando que solo formularios legítimos sean procesados.
 
 ## Licencia
 
